@@ -21,3 +21,21 @@ def test_affichage():
     g.tirer(1, 2)
     attendu_apres = "∿∿∿∿\n∿∿x∿\n∿∿∿∿"
     assert str(g) == attendu_apres
+
+def test_ajoute_bateau_dans_grille():
+    g = Grille(2, 3)
+    b = Bateau(1, 0, longueur=2, vertical=False)  
+    g.ajoute(b)
+    assert g.matrice == ["∿", "∿", "∿", "⛵", "⛵", "∿"]
+
+def test_bateau_depasse_vertical():
+    g = Grille(2, 3)
+    b = Bateau(1, 0, longueur=2, vertical=True)  
+    g.ajoute(b)
+    assert g.matrice == ["∿", "∿", "∿", "∿", "∿", "∿"]
+
+def test_bateau_trop_long():
+    g = Grille(2, 3)
+    b = Bateau(1, 0, longueur=4, vertical=True)  
+    g.ajoute(b)
+    assert g.matrice == ["∿", "∿", "∿", "∿", "∿", "∿"]  
