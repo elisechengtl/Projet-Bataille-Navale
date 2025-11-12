@@ -14,3 +14,13 @@ class Grille:
             self.matrice[index] = self.touche
         else:
             print("Coordonnées invalides")
+
+    def __str__(self):
+            """Retourne une représentation textuelle de la grille."""
+            lignes = []
+            for l in range(self.nombre_lignes):
+                ligne = "".join(
+                    self.matrice[l * self.nombre_colonnes : (l + 1) * self.nombre_colonnes]
+                )
+                lignes.append(ligne)
+        return "\n".join(lignes)
