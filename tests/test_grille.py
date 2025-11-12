@@ -12,3 +12,12 @@ def test_tirer():
     g.tirer(2, 3)
     index = 2 * g.nombre_colonnes + 3
     assert g.matrice[index] == g.touche
+
+def test_affichage():
+    g = Grille(3, 4)
+    attendu_avant = "∿∿∿∿\n∿∿∿∿\n∿∿∿∿"
+    assert str(g) == attendu_avant
+
+    g.tirer(1, 2)
+    attendu_apres = "∿∿∿∿\n∿∿x∿\n∿∿∿∿"
+    assert str(g) == attendu_apres
