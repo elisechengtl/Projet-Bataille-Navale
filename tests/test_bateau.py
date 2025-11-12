@@ -21,3 +21,19 @@ def test_positions_horizontal():
 def test_positions_vertical():
     b = Bateau(2, 3, longueur=3, vertical=True)
     assert b.positions == [(2, 3), (3, 3), (4, 3)]
+
+def test_coule_true():
+    g = Grille(3, 3)
+    b = Bateau(1, 0, longueur=2, vertical=False)
+    g.ajoute(b)
+    g.tirer(1, 0)
+    g.tirer(1, 1)
+    assert b.coulé(g) is True
+
+def test_coule_false():
+    g = Grille(3, 3)
+    b = Bateau(1, 0, longueur=3, vertical=False)
+    g.ajoute(b)
+    g.tirer(1, 0)
+    g.tirer(1, 1)
+    assert b.coulé(g) is False
