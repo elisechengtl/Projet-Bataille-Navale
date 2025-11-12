@@ -1,3 +1,4 @@
+from bateau import Bateau
 from grille import Grille
 
 def test_init():
@@ -9,15 +10,17 @@ def test_init():
 
 def test_tirer():
     g = Grille(5, 8)
-    g.tirer(2, 3)
+    g.tirer(2, 3) 
     index = 2 * g.nombre_colonnes + 3
     assert g.matrice[index] == g.touche
 
 def test_affichage():
     g = Grille(3, 4)
+    # avant tir
     attendu_avant = "∿∿∿∿\n∿∿∿∿\n∿∿∿∿"
     assert str(g) == attendu_avant
 
+    # après tir
     g.tirer(1, 2)
     attendu_apres = "∿∿∿∿\n∿∿x∿\n∿∿∿∿"
     assert str(g) == attendu_apres
@@ -39,3 +42,10 @@ def test_bateau_trop_long():
     b = Bateau(1, 0, longueur=4, vertical=True)  
     g.ajoute(b)
     assert g.matrice == ["∿", "∿", "∿", "∿", "∿", "∿"]  
+
+def test_tir_personnalise():
+    g = Grille(2, 3)
+    g.tirer(0, 1, touche='💥')
+    index = 0 * g.nombre_colonnes + 1
+    assert g.matrice[index] == '💥'
+
